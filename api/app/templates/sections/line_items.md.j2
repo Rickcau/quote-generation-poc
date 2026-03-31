@@ -3,9 +3,9 @@
 
 | Category | Description | Qty | Unit | Unit Price | Total |
 |----------|-------------|-----|------|-----------|-------|
-{% for item in quote.line_items %}
+{%- for item in quote.line_items %}
 | {{ item.service_category }} | {{ item.service_description }} | {{ item.quantity }} | {{ item.unit }} | ${{ "%.2f"|format(item.unit_price) }} | ${{ "%.2f"|format(item.line_total) }} |
-{% endfor %}
+{%- endfor %}
 
 **Subtotal:** ${{ "%.2f"|format(quote.subtotal) }}
 **Tax ({{ "%.2f"|format(quote.tax_rate * 100) }}%):** ${{ "%.2f"|format(quote.tax_amount) }}

@@ -15,10 +15,19 @@ body {{
     line-height: 1.6;
 }}
 h1, h2, h3 {{ color: var(--primary-color); }}
-table {{ border-collapse: collapse; width: 100%; margin: 1em 0; }}
-th {{ background: var(--primary-color); color: white; padding: 10px; text-align: left; }}
-td {{ padding: 8px 10px; border-bottom: 1px solid #ddd; }}
+table {{ border-collapse: collapse; width: 100%; margin: 1em 0; table-layout: fixed; }}
+th {{ background: var(--primary-color); color: white; padding: 10px; text-align: left; white-space: nowrap; }}
+td {{ padding: 8px 10px; border-bottom: 1px solid #ddd; word-wrap: break-word; overflow-wrap: break-word; }}
 tr:nth-child(even) {{ background: #f9f9f9; }}
+/* Services table column widths */
+th:nth-child(1) {{ width: 15%; }}
+th:nth-child(2) {{ width: 35%; white-space: normal; }}
+th:nth-child(3) {{ width: 8%; text-align: right; }}
+th:nth-child(4) {{ width: 8%; }}
+th:nth-child(5) {{ width: 14%; text-align: right; }}
+th:nth-child(6) {{ width: 14%; text-align: right; }}
+td:nth-child(3), td:nth-child(5), td:nth-child(6) {{ text-align: right; white-space: nowrap; }}
+td:nth-child(4) {{ white-space: nowrap; }}
 </style>
 """
 

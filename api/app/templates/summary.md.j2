@@ -4,10 +4,10 @@
 
 | Category | Total |
 |----------|-------|
-{% set categories = quote.line_items|groupby('service_category') %}
-{% for cat, items in categories %}
+{%- set categories = quote.line_items|groupby('service_category') %}
+{%- for cat, items in categories %}
 | {{ cat }} | ${{ "%.2f"|format(items|sum(attribute='line_total')) }} |
-{% endfor %}
+{%- endfor %}
 
 **Total: ${{ "%.2f"|format(quote.total) }}**
 
