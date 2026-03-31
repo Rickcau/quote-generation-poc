@@ -6,17 +6,17 @@ Contoso Environmental Services is a leading provider of environmental solutions,
 
 ## Proposed Services
 
-{% set categories = quote.line_items|groupby('service_category') %}
-{% for cat, items in categories %}
-### {{ cat }}
+{%- set categories = quote.line_items|groupby('service_category') %}
+{%- for cat, items in categories %}
 
+### {{ cat }}
 {% for item in items %}
+
 **{{ item.service_description }}**
 - Quantity: {{ item.quantity }} {{ item.unit }} at ${{ "%.2f"|format(item.unit_price) }}/{{ item.unit }}
 - Estimated Cost: ${{ "%.2f"|format(item.line_total) }}
-
-{% endfor %}
-{% endfor %}
+{%- endfor %}
+{%- endfor %}
 
 ---
 
