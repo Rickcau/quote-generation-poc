@@ -1,1 +1,57 @@
-<p>quote-list works!</p>
+<div class="quote-list-container">
+  <h1>Quotes</h1>
+
+  <div class="spinner-container" *ngIf="loading">
+    <mat-spinner diameter="48"></mat-spinner>
+  </div>
+
+  <mat-table [dataSource]="dataSource" matSort *ngIf="!loading" class="quotes-table">
+
+    <!-- Quote Number Column -->
+    <ng-container matColumnDef="quote_number">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Quote #</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.quote_number }}</mat-cell>
+    </ng-container>
+
+    <!-- Customer Name Column -->
+    <ng-container matColumnDef="customer_name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Customer</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.customer_name }}</mat-cell>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="status-badge" [ngClass]="'status-' + row.status.toLowerCase()">
+          {{ row.status }}
+        </span>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Total Column -->
+    <ng-container matColumnDef="total">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Total</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.total | currency:'USD':'symbol':'1.2-2' }}</mat-cell>
+    </ng-container>
+
+    <!-- Quote Date Column -->
+    <ng-container matColumnDef="quote_date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.quote_date | date:'mediumDate' }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+             class="clickable-row"
+             (click)="onRowClick(row)">
+    </mat-row>
+
+    <tr class="mat-row no-data-row" *matNoDataRow>
+      <td class="mat-cell no-data-cell" [attr.colspan]="displayedColumns.length">
+        No quotes found.
+      </td>
+    </tr>
+
+  </mat-table>
+</div>

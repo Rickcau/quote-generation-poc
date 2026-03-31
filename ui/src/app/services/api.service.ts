@@ -17,7 +17,7 @@ export class ApiService {
   createTemplate(data: any): Observable<any> { return this.http.post(`${this.base}/templates`, data); }
   updateTemplate(id: number, data: any): Observable<any> { return this.http.put(`${this.base}/templates/${id}`, data); }
   deleteTemplate(id: number): Observable<any> { return this.http.delete(`${this.base}/templates/${id}`); }
-  previewDocument(data: any): Observable<string> { return this.http.post(`${this.base}/documents/preview`, data, { responseType: 'text' as any }); }
+  previewDocument(data: any): Observable<string> { return this.http.post(`${this.base}/documents/preview`, data, { responseType: 'text' }) as Observable<string>; }
   renderDocument(data: any): Observable<Blob> { return this.http.post(`${this.base}/documents/render`, data, { responseType: 'blob' }); }
-  previewTemplate(data: any): Observable<string> { return this.http.post(`${this.base}/templates/preview`, data, { responseType: 'text' as any }); }
+  previewTemplate(data: any): Observable<string> { return this.http.post(`${this.base}/templates/preview`, data, { responseType: 'text' }) as Observable<string>; }
 }
