@@ -32,6 +32,12 @@ th:nth-child(5) {{ width: 14%; text-align: right; }}
 th:nth-child(6) {{ width: 14%; text-align: right; }}
 td:nth-child(3), td:nth-child(5), td:nth-child(6) {{ text-align: right; white-space: nowrap; }}
 td:nth-child(4) {{ white-space: nowrap; }}
+/* Signature table */
+.signature-table {{ table-layout: auto; border: none; margin-top: 2em; }}
+.signature-table td {{ border: none; border-bottom: none; padding: 12px 8px; background: transparent !important; }}
+.signature-table .sig-label {{ width: 220px; white-space: nowrap; font-size: 0.95em; }}
+.signature-table .sig-line {{ border-bottom: 1px solid #333 !important; min-width: 250px; }}
+.signature-table tr:nth-child(even) {{ background: transparent; }}
 </style>
 """
 
