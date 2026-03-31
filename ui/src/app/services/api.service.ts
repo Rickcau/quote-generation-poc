@@ -9,12 +9,12 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  getQuotes(): Observable<QuoteSummary[]> { return this.http.get<QuoteSummary[]>(`${this.base}/quotes`); }
+  getQuotes(): Observable<QuoteSummary[]> { return this.http.get<QuoteSummary[]>(`${this.base}/quotes/`); }
   getQuote(id: number): Observable<QuoteDetail> { return this.http.get<QuoteDetail>(`${this.base}/quotes/${id}`); }
   updateQuote(id: number, data: any): Observable<any> { return this.http.put(`${this.base}/quotes/${id}`, data); }
-  getTemplates(): Observable<TemplateSummary[]> { return this.http.get<TemplateSummary[]>(`${this.base}/templates`); }
+  getTemplates(): Observable<TemplateSummary[]> { return this.http.get<TemplateSummary[]>(`${this.base}/templates/`); }
   getTemplate(id: number): Observable<TemplateDetail> { return this.http.get<TemplateDetail>(`${this.base}/templates/${id}`); }
-  createTemplate(data: any): Observable<any> { return this.http.post(`${this.base}/templates`, data); }
+  createTemplate(data: any): Observable<any> { return this.http.post(`${this.base}/templates/`, data); }
   updateTemplate(id: number, data: any): Observable<any> { return this.http.put(`${this.base}/templates/${id}`, data); }
   deleteTemplate(id: number): Observable<any> { return this.http.delete(`${this.base}/templates/${id}`); }
   previewDocument(data: any): Observable<string> { return this.http.post(`${this.base}/documents/preview`, data, { responseType: 'text' }) as Observable<string>; }

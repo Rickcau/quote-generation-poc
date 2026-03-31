@@ -29,6 +29,7 @@ export class QuotePreviewComponent implements OnInit {
       next: (quote) => {
         this.quote = quote;
         this.loading = false;
+        this.loadPreview();
       },
       error: () => {
         this.loading = false;
