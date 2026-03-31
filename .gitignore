@@ -20,3 +20,9 @@ Thumbs.db
 
 # Docker
 *.log
+
+# Local Tools and local docs
+.copilot/
+.codex/
+.claude/
+.docs/
