@@ -11,7 +11,7 @@ from jinja2 import Environment, FileSystemLoader
 
 from app.models import PreviewRequest, RenderRequest
 from app.database import fetch_all, fetch_one
-from app.renderers.html_renderer import render_html
+from app.renderers.html_renderer import render_html, render_html_for_pdf
 from app.renderers.pdf_renderer import render_pdf
 from app.renderers.docx_renderer import render_docx
 from app.template_compiler import compile_template
@@ -319,7 +319,8 @@ def render_document(request: RenderRequest):
     quote_number = quote_ns.quote_number.replace("/", "-").replace("\\", "-")
 
     if request.format == "pdf":
-        pdf_bytes = render_pdf(html)
+        pdf_html = render_html_for_pdf(markdown_text, style_config)
+        pdf_bytes = render_pdf(pdf_html)
         filename = f"{quote_number}.pdf"
         return StreamingResponse(
             BytesIO(pdf_bytes),
