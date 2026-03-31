@@ -1,1 +1,8 @@
-<p>template-selector works!</p>
+<mat-form-field appearance="outline" class="template-select">
+  <mat-label>Template</mat-label>
+  <mat-select [value]="selectedKey" (selectionChange)="onSelectionChange($event.value)">
+    <mat-option *ngFor="let t of templates" [value]="t.template_key">
+      {{ t.template_name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

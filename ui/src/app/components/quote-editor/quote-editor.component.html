@@ -1,1 +1,36 @@
-<p>quote-editor works!</p>
+<div class="editor-panel" [formGroup]="form">
+  <h2>Edit Quote</h2>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Notes</mat-label>
+    <textarea matInput formControlName="notes" rows="3"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Regulatory Notes</mat-label>
+    <textarea matInput formControlName="regulatory_notes" rows="3"></textarea>
+  </mat-form-field>
+
+  <h3>Line Items</h3>
+  <div formArrayName="line_items">
+    <div *ngFor="let item of lineItems.controls; let i = index" [formGroupName]="i" class="line-item-row">
+      <mat-form-field appearance="outline" class="desc-field">
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="service_description">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="num-field">
+        <mat-label>Qty</mat-label>
+        <input matInput type="number" formControlName="quantity">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="num-field">
+        <mat-label>Unit Price</mat-label>
+        <input matInput type="number" formControlName="unit_price">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="editor-actions">
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
+    <button mat-button (click)="cancel()">Cancel</button>
+  </div>
+</div>

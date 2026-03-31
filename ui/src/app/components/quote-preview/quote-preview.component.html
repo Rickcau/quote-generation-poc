@@ -1,1 +1,41 @@
-<p>quote-preview works!</p>
+<div class="preview-container">
+  <div class="preview-header">
+    <button mat-icon-button (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1 *ngIf="quote">{{ quote.quote_number }} — {{ quote.customer.company_name }}</h1>
+    <div class="actions">
+      <app-template-selector
+        [selectedKey]="selectedTemplate"
+        (templateChanged)="onTemplateChanged($event)">
+      </app-template-selector>
+      <button mat-raised-button (click)="toggleEdit()">
+        <mat-icon>edit</mat-icon> Edit
+      </button>
+      <button mat-raised-button color="primary" (click)="downloadPdf()">
+        <mat-icon>picture_as_pdf</mat-icon> PDF
+      </button>
+      <button mat-raised-button color="accent" (click)="downloadDocx()">
+        <mat-icon>description</mat-icon> DOCX
+      </button>
+    </div>
+  </div>
+
+  <div class="spinner-container" *ngIf="loading">
+    <mat-spinner diameter="48"></mat-spinner>
+  </div>
+
+  <div class="content-area" *ngIf="!loading && quote">
+    <app-quote-editor
+      *ngIf="editing"
+      [quote]="quote"
+      [selectedTemplate]="selectedTemplate"
+      (saved)="ngOnInit()"
+      (cancelled)="editing = false">
+    </app-quote-editor>
+
+    <div class="preview-panel" [class.with-editor]="editing">
+      <div class="preview-frame" [innerHTML]="previewHtml"></div>
+    </div>
+  </div>
+</div>

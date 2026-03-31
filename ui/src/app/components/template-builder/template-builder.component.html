@@ -1,1 +1,60 @@
-<p>template-builder works!</p>
+<div class="builder-container">
+  <h1>{{ templateId ? 'Edit Template' : 'New Template' }}</h1>
+
+  <div class="builder-layout">
+    <div class="config-panel">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Template Name</mat-label>
+        <input matInput [(ngModel)]="templateName" (ngModelChange)="loadPreview()">
+      </mat-form-field>
+
+      <h3>Sections</h3>
+      <div class="section-list">
+        <div *ngFor="let section of sections; let i = index" class="section-row">
+          <mat-checkbox [checked]="section.enabled" (change)="toggleSection(i)">
+            {{ section.label }}
+          </mat-checkbox>
+          <div class="reorder-buttons">
+            <button mat-icon-button (click)="moveUp(i)" [disabled]="i === 0">
+              <mat-icon>arrow_upward</mat-icon>
+            </button>
+            <button mat-icon-button (click)="moveDown(i)" [disabled]="i === sections.length - 1">
+              <mat-icon>arrow_downward</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <h3>Style</h3>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Color Scheme</mat-label>
+        <mat-select [(value)]="colorScheme" (selectionChange)="loadPreview()">
+          <mat-option *ngFor="let c of colorOptions" [value]="c.value">
+            {{ c.label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Font Family</mat-label>
+        <mat-select [(value)]="fontFamily" (selectionChange)="loadPreview()">
+          <mat-option *ngFor="let f of fontOptions" [value]="f">{{ f }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="builder-actions">
+        <button mat-raised-button color="primary" (click)="save()" [disabled]="!templateName">
+          Save Template
+        </button>
+        <button mat-button color="warn" *ngIf="templateId && !isSystem" (click)="deleteTemplate()">
+          Delete
+        </button>
+      </div>
+    </div>
+
+    <div class="preview-panel">
+      <h3>Preview</h3>
+      <div class="preview-frame" [innerHTML]="previewHtml"></div>
+    </div>
+  </div>
+</div>

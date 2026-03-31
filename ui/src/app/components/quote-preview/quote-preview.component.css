@@ -1,0 +1,54 @@
+.preview-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.preview-header h1 {
+  flex: 1;
+  font-size: 1.4rem;
+  margin: 0;
+  color: #333;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  padding: 64px 0;
+}
+
+.content-area {
+  display: flex;
+  gap: 24px;
+}
+
+.preview-panel {
+  flex: 1;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.preview-panel.with-editor {
+  flex: 1;
+}
+
+.preview-frame {
+  padding: 24px;
+  min-height: 600px;
+}

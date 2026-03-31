@@ -1,0 +1,28 @@
+.editor-panel {
+  min-width: 400px;
+  max-width: 500px;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+h2 { margin: 0 0 16px; font-size: 1.2rem; color: #333; }
+h3 { margin: 16px 0 8px; font-size: 1rem; color: #555; }
+
+.full-width { width: 100%; }
+
+.line-item-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.desc-field { flex: 2; }
+.num-field { flex: 1; }
+
+.editor-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}

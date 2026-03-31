@@ -1,0 +1,19 @@
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.app-title {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.spacer {
+  flex: 1;
+}
+
+button.active {
+  background: rgba(255, 255, 255, 0.15);
+}
