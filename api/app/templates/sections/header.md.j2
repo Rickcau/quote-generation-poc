@@ -1,0 +1,12 @@
+# {{ quote.quote_number }}
+
+**Contoso Environmental Services**
+123 Industrial Parkway, Houston, TX 77001
+
+---
+
+**Prepared for:** {{ quote.customer.company_name }}
+**Contact:** {{ quote.customer.contact_name }} ({{ quote.customer.contact_email }})
+**Date:** {{ quote.quote_date.strftime('%B %d, %Y') }}
+**Valid Until:** {{ quote.valid_until.strftime('%B %d, %Y') }}
+**Status:** {{ quote.status }}

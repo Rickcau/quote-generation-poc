@@ -1,0 +1,18 @@
+{% include 'sections/header.md.j2' %}
+
+## Service Summary
+
+| Category | Total |
+|----------|-------|
+{% set categories = quote.line_items|groupby('service_category') %}
+{% for cat, items in categories %}
+| {{ cat }} | ${{ "%.2f"|format(items|sum(attribute='line_total')) }} |
+{% endfor %}
+
+**Total: ${{ "%.2f"|format(quote.total) }}**
+
+{% if quote.regulatory_notes %}
+*Note: {{ quote.regulatory_notes[:200] }}{% if quote.regulatory_notes|length > 200 %}...{% endif %}*
+{% endif %}
+
+{% include 'sections/terms.md.j2' %}

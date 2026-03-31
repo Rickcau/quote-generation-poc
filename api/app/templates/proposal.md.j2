@@ -1,0 +1,29 @@
+{% include 'sections/header.md.j2' %}
+
+## About Contoso Environmental Services
+
+Contoso Environmental Services is a leading provider of environmental solutions, specializing in hazardous waste management, emergency response, and regulatory compliance. We are committed to delivering safe, efficient, and compliant services tailored to your industry.
+
+## Proposed Services
+
+{% set categories = quote.line_items|groupby('service_category') %}
+{% for cat, items in categories %}
+### {{ cat }}
+
+{% for item in items %}
+**{{ item.service_description }}**
+- Quantity: {{ item.quantity }} {{ item.unit }} at ${{ "%.2f"|format(item.unit_price) }}/{{ item.unit }}
+- Estimated Cost: ${{ "%.2f"|format(item.line_total) }}
+
+{% endfor %}
+{% endfor %}
+
+---
+
+**Subtotal:** ${{ "%.2f"|format(quote.subtotal) }}
+**Tax ({{ "%.2f"|format(quote.tax_rate * 100) }}%):** ${{ "%.2f"|format(quote.tax_amount) }}
+**Total Investment:** ${{ "%.2f"|format(quote.total) }}
+
+{% include 'sections/regulatory.md.j2' %}
+
+{% include 'sections/signature.md.j2' %}

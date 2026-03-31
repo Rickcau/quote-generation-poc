@@ -1,0 +1,8 @@
+## Quote Summary
+
+This quote covers environmental services for **{{ quote.customer.company_name }}** in the **{{ quote.customer.industry }}** sector. The scope includes {{ quote.line_items|length }} service items across the following categories:
+
+{% set categories = quote.line_items|map(attribute='service_category')|unique|list %}
+{% for cat in categories %}
+- {{ cat }}
+{% endfor %}
