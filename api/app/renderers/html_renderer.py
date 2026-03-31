@@ -2,6 +2,10 @@ import markdown
 
 CSS_TEMPLATE = """
 <style>
+@page {{
+    size: letter;
+    margin: 1in;
+}}
 :root {{
     --primary-color: {primary_color};
     --font-family: {font_family};

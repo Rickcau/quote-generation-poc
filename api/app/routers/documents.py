@@ -327,7 +327,37 @@ def render_document(request: RenderRequest):
             headers={"Content-Disposition": f'attachment; filename="{filename}"'},
         )
     else:  # docx
-        docx_bytes = render_docx(html)
+        # Build quote_data dict for the styled python-docx renderer
+        quote_data = {
+            "quote_number": quote_detail.quote_number,
+            "quote_date": str(quote_detail.quote_date),
+            "valid_until": str(quote_detail.valid_until),
+            "status": quote_detail.status,
+            "subtotal": quote_detail.subtotal,
+            "tax_rate": quote_detail.tax_rate,
+            "tax_amount": quote_detail.tax_amount,
+            "total": quote_detail.total,
+            "notes": quote_detail.notes,
+            "regulatory_notes": quote_detail.regulatory_notes,
+            "customer": {
+                "company_name": quote_detail.customer.company_name,
+                "contact_name": quote_detail.customer.contact_name,
+                "contact_email": quote_detail.customer.contact_email,
+                "industry": quote_detail.customer.industry,
+            },
+            "line_items": [
+                {
+                    "service_category": li.service_category,
+                    "service_description": li.service_description,
+                    "quantity": li.quantity,
+                    "unit": li.unit,
+                    "unit_price": li.unit_price,
+                    "line_total": li.line_total,
+                }
+                for li in quote_detail.line_items
+            ],
+        }
+        docx_bytes = render_docx(html, quote_data=quote_data, style_config=style_config)
         filename = f"{quote_number}.docx"
         return StreamingResponse(
             BytesIO(docx_bytes),
