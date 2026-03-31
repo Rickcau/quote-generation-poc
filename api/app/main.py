@@ -1,12 +1,13 @@
 from fastapi import FastAPI
 from app.database import check_health
-from app.routers import quotes, customers, templates
+from app.routers import quotes, customers, templates, documents
 
 app = FastAPI(title="Quote Generation POC", version="1.0.0")
 
 app.include_router(quotes.router)
 app.include_router(customers.router)
 app.include_router(templates.router)
+app.include_router(documents.router)
 
 @app.get("/api/health")
 def health():
