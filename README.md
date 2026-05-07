@@ -17,6 +17,11 @@ No other local tooling required — all runtimes run inside containers.
 
 ---
 
+## Conceptual Architecture
+![Conceptual-Architecture](./images/conceptual-architecture.jpg)
+
+---
+
 ## Quickstart
 
 ```bash
@@ -64,20 +69,20 @@ docker-compose down -v
 
 ```
 ┌─────────────────────────────────────────────┐
-│  Angular UI (Nginx)         localhost:4200   │
+│  Angular UI (Nginx)         localhost:4200  │
 └──────────────────┬──────────────────────────┘
                    │ HTTP (JSON) via Nginx proxy
 ┌──────────────────▼──────────────────────────┐
-│  Python API (FastAPI)       localhost:8000   │
-│                                              │
-│  ├── Data Access Layer (pyodbc)              │
-│  ├── Template Engine (Jinja2 + Markdown)     │
-│  ├── Template Compiler (section-based)       │
-│  └── Document Renderers (HTML/PDF/DOCX)      │
+│  Python API (FastAPI)       localhost:8000  │
+│                                             │
+│  ├── Data Access Layer (pyodbc)             │
+│  ├── Template Engine (Jinja2 + Markdown)    │
+│  ├── Template Compiler (section-based)      │
+│  └── Document Renderers (HTML/PDF/DOCX)     │
 └──────────────────┬──────────────────────────┘
                    │ pyodbc (ODBC Driver 18)
 ┌──────────────────▼──────────────────────────┐
-│  SQL Server 2022 Developer  localhost:1433   │
+│  SQL Server 2022 Developer  localhost:1433  │
 └─────────────────────────────────────────────┘
 ```
 
